@@ -1,14 +1,14 @@
 BattleText:: ; used only for BANK(BattleText)
 
 BattleText_PlayerPickedUpPayDayMoney:
-	text "<PLAYER> picked up"
+	text "You picked up"
 	line "¥@"
 	deciram wPayDayMoney, 3, 6
 	text "!"
 	prompt
 
 WildPokemonAppearedText:
-	text "Wild @"
+	text " A wild @"
 	text_from_ram wEnemyMonNick
 	text_start
 	line "appeared!"
@@ -29,7 +29,7 @@ PokemonFellFromTreeText:
 	prompt
 
 WildCelebiAppearedText:
-	text "Wild @"
+	text "@"
 	text_from_ram wEnemyMonNick
 	text_start
 	line "appeared!"
@@ -44,14 +44,14 @@ BattleText_WildFled:
 	text "Wild @"
 	text_from_ram wEnemyMonNick
 	text_start
-	line "fled!"
+	line "fled from battle!"
 	prompt
 
 BattleText_EnemyFled:
 	text "Enemy @"
 	text_from_ram wEnemyMonNick
 	text_start
-	line "fled!"
+	line "fled from battle!"
 	prompt
 
 HurtByPoisonText:
@@ -65,28 +65,29 @@ HurtByBurnText:
 	prompt
 
 LeechSeedSapsText:
-	text "LEECH SEED saps"
+	text "Leech Seed saps"
 	line "<USER>!"
 	prompt
 
 HasANightmareText:
 	text "<USER>"
-	line "has a NIGHTMARE!"
+	line "has a Nightmare!"
 	prompt
 
 HurtByCurseText:
 	text "<USER>'s"
-	line "hurt by the CURSE!"
+	line "hurt by the Curse!"
 	prompt
 
 SandstormHitsText:
-	text "The SANDSTORM hits"
+	text "The Sandstorm hits"
 	line "<USER>!"
 	prompt
 
 PerishCountText:
 	text "<USER>'s"
-	line "PERISH count is @"
+	line "Perish Song count 
+	prompt is @"
 	deciram wDeciramBuffer, 1, 1
 	text "!"
 	prompt
@@ -109,25 +110,24 @@ BattleText_UserRecoveredPPUsing:
 
 BattleText_TargetWasHitByFutureSight:
 	text "<TARGET>"
-	line "was hit by FUTURE"
-	cont "SIGHT!"
+	line "was identified!" 
 	prompt
 
 BattleText_SafeguardFaded:
 	text "<USER>'s"
-	line "SAFEGUARD faded!"
+	line "Safeguard faded!"
 	prompt
 
 BattleText_MonsLightScreenFell:
 	text_from_ram wStringBuffer1
-	text " #MON's"
-	line "LIGHT SCREEN fell!"
+	text " Pokemon's"
+	line "Light Screen fell!"
 	prompt
 
 BattleText_MonsReflectFaded:
 	text_from_ram wStringBuffer1
-	text " #MON's"
-	line "REFLECT faded!"
+	text " Pokemon's"
+	line "Reflect faded!"
 	prompt
 
 BattleText_RainContinuesToFall:
@@ -141,7 +141,7 @@ BattleText_TheSunlightIsStrong:
 	prompt
 
 BattleText_TheSandstormRages:
-	text "The SANDSTORM"
+	text "The Sandstorm"
 	line "rages."
 	prompt
 
@@ -155,19 +155,19 @@ BattleText_TheSunlightFaded:
 	prompt
 
 BattleText_TheSandstormSubsided:
-	text "The SANDSTORM"
+	text "The Sandstorm"
 	line "subsided."
 	prompt
 
 BattleText_EnemyMonFainted:
-	text "Enemy @"
+	text "The enemy @"
 	text_from_ram wEnemyMonNick
 	text_start
 	line "fainted!"
 	prompt
 
 GotMoneyForWinningText:
-	text "<PLAYER> got ¥@"
+	text "You got ¥@"
 	deciram wBattleReward, 3, 6
 	text_start
 	line "for winning!"
@@ -188,7 +188,8 @@ SentSomeToMomText:
 	deciram wBattleReward, 3, 6
 	text_start
 	line "for winning!"
-	cont "Sent some to MOM!"
+	cont "Sending some to Mom"
+	line "through the Pokegear!"
 	prompt
 
 SentHalfToMomText:
@@ -202,7 +203,7 @@ SentAllToMomText:
 BattleText_0x80a4f:
 	text "<RIVAL>: Huh? I"
 	line "should've chosen"
-	cont "your #MON!"
+	cont "your Pokemon!"
 	prompt
 
 BattleText_MonFainted:
@@ -212,13 +213,14 @@ BattleText_MonFainted:
 	prompt
 
 BattleText_UseNextMon:
-	text "Use next #MON?"
+	text "Use another"
+	line "Pokemon?"
 	done
 
 BattleText_0x80a93:
 	text "<RIVAL>: Yes!"
 	line "I guess I chose a"
-	cont "good #MON!"
+	cont "good Pokemon!"
 	prompt
 
 LostAgainstText:
@@ -233,8 +235,8 @@ BattleText_EnemyIsAboutToUseWillPlayerChangeMon:
 	text_from_ram wEnemyMonNick
 	text "."
 
-	para "Will <PLAYER>"
-	line "change #MON?"
+	para "Will you"
+	line "change your Pokemon?"
 	done
 
 BattleText_EnemySentOut:
@@ -970,23 +972,23 @@ PutACurseText:
 	text "<USER>"
 	line "cut its own HP and"
 
-	para "put a CURSE on"
+	para "put a Curse on"
 	line "<TARGET>!"
 	prompt
 
 ProtectedItselfText:
 	text "<USER>"
-	line "PROTECTED itself!"
+	line "protected itself!"
 	prompt
 
 ProtectingItselfText:
 	text "<TARGET>'s"
-	line "PROTECTING itself!"
+	line "protecting itself!"
 	done
 
 SpikesText:
-	text "SPIKES scattered"
-	line "all around"
+	text "Spikes are scat-"
+	line "tered all around"
 	cont "<TARGET>!"
 	prompt
 
@@ -997,12 +999,12 @@ IdentifiedText:
 	prompt
 
 StartPerishText:
-	text "Both #MON will"
+	text "Both Pokemon will"
 	line "faint in 3 turns!"
 	prompt
 
 SandstormBrewedText:
-	text "A SANDSTORM"
+	text "A sandstorm"
 	line "brewed!"
 	prompt
 
@@ -1024,7 +1026,7 @@ CoveredByVeilText:
 SafeguardProtectText:
 	text "<TARGET>"
 	line "is protected by"
-	cont "SAFEGUARD!"
+	cont "Safeguard!"
 	prompt
 
 MagnitudeText:
@@ -1041,12 +1043,13 @@ ReleasedByText:
 
 ShedLeechSeedText:
 	text "<USER>"
-	line "shed LEECH SEED!"
+	line "shed Leech Seed!"
 	prompt
 
 BlewSpikesText:
 	text "<USER>"
-	line "blew away SPIKES!"
+	line "blew away the" 
+	line "spikes!"
 	prompt
 
 DownpourText:
@@ -1062,7 +1065,7 @@ SunGotBrightText:
 BellyDrumText:
 	text "<USER>"
 	line "cut its HP and"
-	cont "maximized ATTACK!"
+	cont "maximized its Attack!"
 	prompt
 
 CopiedStatsText:

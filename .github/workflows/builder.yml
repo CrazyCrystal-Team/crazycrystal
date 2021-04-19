@@ -18,9 +18,9 @@ jobs:
         pushd rgbds
         sudo make install
         popd
-    - name: Build Rangi42/polishedcrystal
+    - name: Build FieryMewtwo/crazycrystal
       run: |
-        git clone https://github.com/Rangi42/polishedcrystal.git
+        git clone https://github.com/FieryMewtwo/crazycrystal.git
         pushd polishedcrystal
         mkdir build
         make -j4
@@ -44,17 +44,17 @@ jobs:
         popd
     - name: Advance nightly tag to master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       run: |
         pushd polishedcrystal
         git tag v3.0.0-beta-nightly -f
-        git push --tags -f "https://Rangi42:$GITHUB_TOKEN@github.com/Rangi42/polishedcrystal.git"
+        git push --tags -f "https://FieryMewtwo:$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@github.com/FieryMewtwo/crazycrystal.git"
         popd
     - name: Create new release
       id: create_release
       uses: actions/create-release@v1.0.0
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         tag_name: v3.0.0-beta-nightly
         release_name: 3.0.0 beta nightly
@@ -64,7 +64,7 @@ jobs:
       id: upload
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.gbc
@@ -74,7 +74,7 @@ jobs:
       id: upload-sym
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.sym
@@ -84,7 +84,7 @@ jobs:
       id: upload-faithful
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-beta.gbc
@@ -94,7 +94,7 @@ jobs:
       id: upload-faithful-sym
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-beta.sym
@@ -104,7 +104,7 @@ jobs:
       id: upload-debug
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-debug-beta.gbc
@@ -134,7 +134,7 @@ jobs:
       id: upload-faithful-debug-sym
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-debug-beta.sym
@@ -144,7 +144,7 @@ jobs:
       id: upload-bsp
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.bsp

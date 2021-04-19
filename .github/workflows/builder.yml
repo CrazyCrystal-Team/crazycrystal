@@ -21,32 +21,32 @@ jobs:
     - name: Build FieryMewtwo/crazycrystal
       run: |
         git clone https://github.com/FieryMewtwo/crazycrystal.git
-        pushd polishedcrystal
+        pushd crazycrystal
         mkdir build
         make -j4
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-beta.sym
+        mv crazycrystal-3.0.0-beta.gbc build/crazycrystal-3.0.0-beta.gbc
+        mv crazycrystal-3.0.0-beta.sym build/crazycrystal-3.0.0-beta.sym
         make tidy
         make -j4 faithful
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-faithful-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-faithful-beta.sym
+        mv crazycrystal-3.0.0-beta.gbc build/crazycrystal-3.0.0-faithful-beta.gbc
+        mv crazycrystal-3.0.0-beta.sym build/crazycrystal-3.0.0-faithful-beta.sym
         make tidy
         make -j4 debug
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-debug-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-debug-beta.sym
+        mv crazycrystal-3.0.0-beta.gbc build/crazycrystal-3.0.0-debug-beta.gbc
+        mv crazycrystal-3.0.0-beta.sym build/crazycrystal-3.0.0-debug-beta.sym
         make tidy
         make -j4 faithful debug
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-faithful-debug-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-faithful-debug-beta.sym
+        mv crazycrystal-3.0.0-beta.gbc build/crazycrystal-3.0.0-faithful-debug-beta.gbc
+        mv crazycrystal-3.0.0-beta.sym build/crazycrystal-3.0.0-faithful-debug-beta.sym
         make tidy
         make bsp
-        mv polishedcrystal-3.0.0-beta.bsp build/polishedcrystal-3.0.0-beta.bsp
+        mv crazycrystal-3.0.0-beta.bsp build/crazycrystal-3.0.0-beta.bsp
         popd
     - name: Advance nightly tag to master
       env:
         GITHUB_TOKEN: ${{ secrets.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 }}
       run: |
-        pushd polishedcrystal
+        pushd crazycrystal
         git tag v3.0.0-beta-nightly -f
         git push --tags -f "https://FieryMewtwo:$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@github.com/FieryMewtwo/crazycrystal.git"
         popd
@@ -67,8 +67,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.gbc
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-beta.gbc
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}.gbc
         asset_content_type: application/octet-stream
     - name: Upload SYM
       id: upload-sym
@@ -77,8 +77,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.sym
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-beta.sym
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}.sym
         asset_content_type: text/plain
     - name: Upload faithful ROM
       id: upload-faithful
@@ -87,8 +87,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful.gbc
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-faithful-beta.gbc
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful.gbc
         asset_content_type: application/octet-stream
     - name: Upload faithful SYM
       id: upload-faithful-sym
@@ -97,8 +97,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful.sym
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-faithful-beta.sym
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful.sym
         asset_content_type: text/plain
     - name: Upload debug ROM
       id: upload-debug
@@ -107,8 +107,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-debug-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-debug.gbc
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-debug-beta.gbc
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}-debug.gbc
         asset_content_type: application/octet-stream
     - name: Upload debug SYM
       id: upload-debug-sym
@@ -117,8 +117,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-debug-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-debug.sym
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-debug-beta.sym
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}-debug.sym
         asset_content_type: text/plain
     - name: Upload faithful debug ROM
       id: upload-faithful-debug
@@ -127,8 +127,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-debug-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful-debug.gbc
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-faithful-debug-beta.gbc
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful-debug.gbc
         asset_content_type: application/octet-stream
     - name: Upload faithful debug SYM
       id: upload-faithful-debug-sym
@@ -137,8 +137,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-debug-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful-debug.sym
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-faithful-debug-beta.sym
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful-debug.sym
         asset_content_type: text/plain
     - name: Upload BSP
       id: upload-bsp
@@ -147,6 +147,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.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 }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.bsp
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.bsp
+        asset_path: ./crazycrystal/build/crazycrystal-3.0.0-beta.bsp
+        asset_name: crazycrystal-3.0.0-beta-${{ env.SHORT_SHA }}.bsp
         asset_content_type: application/octet-stream

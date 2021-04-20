@@ -20,7 +20,7 @@ jobs:
         popd
     - name: Build
       run: |
-        git clone https://github.com/Rangi42/polishedcrystal.git
+        git clone https://github.com/FieryMewtwo/crazycrystal.git
         pushd polishedcrystal
         mkdir build
         make -j4
@@ -59,7 +59,7 @@ jobs:
         tag_name: v3.0.0-beta-nightly
         release_name: 3.0.0 beta nightly
         draft: false
-        prerelease: true
+        prerelease: false
     - name: Upload ROM
       id: upload
       uses: actions/upload-release-asset@v1.0.1

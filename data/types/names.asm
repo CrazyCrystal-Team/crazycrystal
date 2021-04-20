@@ -6,7 +6,7 @@ TypeNames:
 	dw Poison
 	dw Ground
 	dw Rock
-	dw Fairy
+	dw Bird
 	dw Bug
 	dw Ghost
 	dw Steel
@@ -42,7 +42,7 @@ Psychic:   db "Psychic@"
 Ice:       db "Ice@"
 Ground:    db "Ground@"
 Rock:      db "Rock@"
-Fairy:     db "Fairy@"
+Bird:      db "Bird@"
 Bug:       db "Bug@"
 Ghost:     db "Ghost@"
 Steel:     db "Steel@"

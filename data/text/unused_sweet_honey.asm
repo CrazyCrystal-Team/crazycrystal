@@ -10,7 +10,7 @@
 
 UnusedSweetHoneyText:
 	text "My Pokemon is "
-	line "an expert at 
+	line "an expert at" 
 	cont "collecting Sweet Honey."
 
 	para "I'll share some"
@@ -59,10 +59,10 @@ UnusedSweetHoneyAfterText3:
 	line "Honey on a tree?"
 
 	para "It takes about a"
-	line "day for #MON to"
+	line "day for Pokemon to"
 	cont "be drawn to it."
 	done
 
 UnusedSweetHoneyButterfreeText:
-	text "BUTTERFREE: Freeh!"
+	text "Butterfree: Freeh!"
 	done

@@ -1,6 +1,6 @@
 # Instructions
 
-These instructions explain how to set up the tools required to build **pokecrystal**, including [**rgbds**](https://github.com/rednex/rgbds), which assembles the source files into a ROM.
+These instructions explain how to set up the tools required to build **shiningcrystal**, including [**rgbds**](https://github.com/rednex/rgbds), which assembles the source files into a ROM.
 
 If you run into trouble, ask for help on IRC or Discord (see [README.md](README.md)).
 
@@ -9,9 +9,9 @@ If you run into trouble, ask for help on IRC or Discord (see [README.md](README.
 
 Download and install [**Windows Subsystem for Linux**](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Then open the **WSL terminal**.
 
-WSL has its own file system that's not accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to install pokecrystal within Windows. You'll have to change the **current working directory** every time you open WSL.
+WSL has its own file system that's not accessible from Windows, but Windows files *are* accessible from WSL. So you're going to want to install shiningcrystal within Windows. You'll have to change the **current working directory** every time you open WSL.
 
-For example, if you want to store pokecrystal in **C:\Users\\*\<user>*\Desktop**, enter this command:
+For example, if you want to store shiningcrystal in **C:\Users\\*\<user>*\Desktop**, enter this command:
 
 ```bash
 cd /mnt/c/Users/<user>/Desktop
@@ -42,9 +42,9 @@ Then download [**rgbds**](https://github.com/rednex/rgbds/releases/): the latest
 
 Now open the **Cygwin terminal** and enter the following commands.
 
-Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\*\<user>***. If you don't want to store pokecrystal there, you'll have to change the **current working directory** every time you open Cygwin.
+Cygwin has its own file system that's within Windows, at **C:\cygwin64\home\\*\<user>***. If you don't want to store shiningcrystal there, you'll have to change the **current working directory** every time you open Cygwin.
 
-For example, if you want to store pokecrystal in **C:\Users\\*\<user>*\Desktop**:
+For example, if you want to store shiningcrystal in **C:\Users\\*\<user>*\Desktop**:
 
 ```bash
 cd /cygdrive/c/Users/<user>/Desktop
@@ -52,7 +52,7 @@ cd /cygdrive/c/Users/<user>/Desktop
 
 (The Windows `C:\` drive is called `/cygdrive/c/` in Cygwin. Replace *\<user>* in the example path with your username.)
 
-Now you're ready to [build **pokecrystal**](#build-pokecrystal).
+Now you're ready to [build **shiningcrystal**](#build-shiningcrystal).
 
 
 ## Mac OS X
@@ -72,7 +72,7 @@ git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
 
-Now you're ready to [build **pokecrystal**](#build-pokecrystal).
+Now you're ready to [build **shiningcrystal**](#build-shiningcrystal).
 
 
 ## Linux
@@ -81,7 +81,7 @@ Open **Terminal** and enter the following commands, depending on which distro yo
 
 ### Debian or Ubuntu
 
-To install the software required for **pokecrystal**:
+To install the software required for **shiningcrystal**:
 
 ```bash
 sudo apt-get install make gcc git
@@ -97,7 +97,7 @@ sudo make -C rgbds CFLAGS=-O2 install
 
 ### OpenSUSE
 
-To install the software required for **pokecrystal**:
+To install the software required for **shiningrystal**:
 
 ```bash
 sudo zypper install make gcc git
@@ -113,7 +113,7 @@ sudo make -C rgbds CFLAGS=-O2 install
 
 ### Arch Linux
 
-To install the software required for **pokecrystal**:
+To install the software required for **shiningcrystal**:
 
 ```bash
 sudo pacman -S make gcc git
@@ -129,7 +129,7 @@ sudo make -C rgbds CFLAGS=-O2 install
 
 ### Termux
 
-To install the software required for **pokecrystal**:
+To install the software required for **shiningcrystal**:
 
 ```bash
 sudo apt install make clang git sed
@@ -162,25 +162,25 @@ git clone --depth=1 https://github.com/rednex/rgbds
 sudo make -C rgbds CFLAGS=-O2 install
 ```
 
-Now you're ready to [build **pokecrystal**](#build-pokecrystal).
+Now you're ready to [build **shiningcrystal**](#build-shiningcrystal).
 
 
-## Build pokecrystal
+## Build shiningcrystal
 
-To download the **pokecrystal** source files:
+To download the **shiningcrystal** source files:
 
 ```bash
-git clone https://github.com/pret/pokecrystal
-cd pokecrystal
+git clone https://github.com/FieryMewtwo/shiningcrystal
+cd shiningcrystal
 ```
 
-To build **pokecrystal.gbc**:
+To build **shiningcrystal.gbc**:
 
 ```bash
 make
 ```
 
-To build **pokecrystal11.gbc**:
+To build **shiningcrystal11.gbc**:
 
 ```bash
 make crystal11

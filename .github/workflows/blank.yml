@@ -9,8 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Set environment variables
-      run: echo "SHORT_SHA=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
     - name: Install dependencies
       run: |
         sudo apt-get install make python gcc git bison
@@ -18,48 +16,48 @@ jobs:
         pushd rgbds
         sudo make install
         popd
-    - name: Build Rangi42/polishedcrystal
+    - name: Build game
       run: |
-        git clone https://github.com/Rangi42/polishedcrystal.git
-        pushd polishedcrystal
+        git clone https://github.com/FieryMewtwo/shiningcrystal.git
+        pushd shiningcrystal
         mkdir build
         make -j4
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-beta.sym
+        mv shiningcrystal-3.0.0-beta.gbc build/shiningcrystal-3.0.0-beta.gbc
+        mv shiningcrystal-3.0.0-beta.sym build/shiningcrystal-3.0.0-beta.sym
         make tidy
         make -j4 faithful
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-faithful-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-faithful-beta.sym
+        mv shiningcrystal-3.0.0-beta.gbc build/shiningcrystal-3.0.0-faithful-beta.gbc
+        mv shiningcrystal-3.0.0-beta.sym build/shiningcrystal-3.0.0-faithful-beta.sym
         make tidy
         make -j4 debug
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-debug-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-debug-beta.sym
+        mv shiningcrystal-3.0.0-beta.gbc build/shiningcrystal-3.0.0-debug-beta.gbc
+        mv shiningcrystal-3.0.0-beta.sym build/shiningcrystal-3.0.0-debug-beta.sym
         make tidy
         make -j4 faithful debug
-        mv polishedcrystal-3.0.0-beta.gbc build/polishedcrystal-3.0.0-faithful-debug-beta.gbc
-        mv polishedcrystal-3.0.0-beta.sym build/polishedcrystal-3.0.0-faithful-debug-beta.sym
+        mv shiningcrystal-3.0.0-beta.gbc build/shiningcrystal-3.0.0-faithful-debug-beta.gbc
+        mv shiningcrystal-3.0.0-beta.sym build/shiningcrystal-3.0.0-faithful-debug-beta.sym
         make tidy
         make bsp
-        mv polishedcrystal-3.0.0-beta.bsp build/polishedcrystal-3.0.0-beta.bsp
+        mv shiningcrystal-3.0.0-beta.bsp build/shiningcrystal-3.0.0-beta.bsp
         popd
     - name: Advance nightly tag to master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       run: |
-        pushd polishedcrystal
+        pushd shiningcrystal
         git tag v3.0.0-beta-nightly -f
-        git push --tags -f "https://Rangi42:$GITHUB_TOKEN@github.com/Rangi42/polishedcrystal.git"
+        git push --tags -f "https://Rangi42:${{secrets.PURPLE_HAT}}@github.com/FieryMewtwo/shiningcrystal.git"
         popd
     - name: Create new release
       id: create_release
       uses: actions/create-release@v1.1.4
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
         tag_name: v3.0.0-beta-nightly
         release_name: 3.0.0 beta nightly
         body: |
-          This is the current Polished Crystal 3.0.0 *beta* release. The assets all have an 8-character "commit hash" at the end to identify the exact code they're built from.
+          This is the current ShiningCrystal release. The assets all have an 8-character "commit hash" at the end to identify the exact code they're built from.
           
           The **.gbc** assets are ROMs. If you just want to play the game, download one (regular or `-faithful`) and load it in [BGB](https://bgb.bircd.org/), [mGBA](https://mgba.io/), [Gambatte](https://github.com/sinamas/gambatte), or another accurate Game Boy Color emulator (*not* VBA or VBA-M). Do *not* download a `-debug` ROM unless you want to help debug the game.
           
@@ -72,89 +70,89 @@ jobs:
       id: upload
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.gbc
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-beta.gbc
+        asset_name: shiningcrystal-3.0.0-beta.gbc
         asset_content_type: application/octet-stream
     - name: Upload SYM
       id: upload-sym
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.sym
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-beta.sym
+        asset_name: shiningcrystal-3.0.0-beta.sym
         asset_content_type: text/plain
     - name: Upload faithful ROM
       id: upload-faithful
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful.gbc
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-faithful-beta.gbc
+        asset_name: shiningcrystal-3.0.0-beta-faithful.gbc
         asset_content_type: application/octet-stream
     - name: Upload faithful SYM
       id: upload-faithful-sym
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful.sym
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-faithful-beta.sym
+        asset_name: shiningcrystal-3.0.0-beta-faithful.sym
         asset_content_type: text/plain
     - name: Upload debug ROM
       id: upload-debug
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-debug-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-debug.gbc
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-debug-beta.gbc
+        asset_name: shiningcrystal-3.0.0-beta-debug.gbc
         asset_content_type: application/octet-stream
     - name: Upload debug SYM
       id: upload-debug-sym
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-debug-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-debug.sym
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-debug-beta.sym
+        asset_name: shiningcrystal-3.0.0-beta-debug.sym
         asset_content_type: text/plain
     - name: Upload faithful debug ROM
       id: upload-faithful-debug
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-debug-beta.gbc
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful-debug.gbc
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./faithful-debug.gbc
+        asset_name: shiningcrystal-3.0.0-beta-faithful-debug.gbc
         asset_content_type: application/octet-stream
     - name: Upload faithful debug SYM
       id: upload-faithful-debug-sym
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-faithful-debug-beta.sym
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}-faithful-debug.sym
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-faithful-debug-beta.sym
+        asset_name: shiningcrystal-3.0.0-beta-faithful-debug.sym
         asset_content_type: text/plain
     - name: Upload BSP
       id: upload-bsp
       uses: actions/upload-release-asset@v1.0.1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PURPLE_HAT }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./polishedcrystal/build/polishedcrystal-3.0.0-beta.bsp
-        asset_name: polishedcrystal-3.0.0-beta-${{ env.SHORT_SHA }}.bsp
+        upload_url: ${{ secrets.ROMPATH }}
+        asset_path: ./shiningcrystal-3.0.0-beta.bsp
+        asset_name: shiningcrystal-3.0.0-beta.bsp
         asset_content_type: application/octet-stream

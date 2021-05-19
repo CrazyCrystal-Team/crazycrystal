@@ -1,3 +1,8 @@
+# This repository is no longer being worked on. Development is continuing at [this repository instead](https://github.com/FieryMewtwo/shiningcrystal-2.0)
+
+
+
+
 #### This is a QOL hack of pokecrystal. It includes @SoupPotato's fabulous sprites from his pokecrystal_SpriteBase repo, with decapitalization, the Bag,
 #### new music, and some things from @Rangi42's polishedcrystal.
 
